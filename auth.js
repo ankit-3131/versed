@@ -40,7 +40,7 @@ passport.deserializeUser((user, done)=> done(null,user));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req,res)=>{
-    res.sendFile(path.join(__dirname,'public','index.htm'));
+    res.sendFile(path.join(__dirname,'public','login-page.html'));
 });
 
 app.get('/auth/google', passport.authenticate('google', {scope: ["profile","email"]})
@@ -54,10 +54,18 @@ app.get('/main-page',(req,res) =>{
     res.send(`Welcome ${req.user.displayName}`);
 });
 
-app.get('/logout', (req,res)=>{
-    req.logOut();
-    res.redirect('/');
-})
+// app.get('/logout', (req,res)=>{
+//     req.logOut();
+//     res.redirect('/');
+// })
+app.get('/logout', (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        res.redirect('/');
+    });
+});
 
 app.listen(port, ()=>{
     console.log(`Server is running on http://localhost:${port}`);

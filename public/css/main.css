@@ -1,0 +1,24 @@
+:root{
+    --background-color: #2ecc71;
+    /* --background-color: #228b22; */
+    --bs-primary-rgb:#2c3e50;
+    /* --bs-primary-rgb:#f5f5dc; */
+    
+
+}
+
+body{
+    font-family: Raleway;
+    background-color: var(--background-color);
+    color: var(--bs-primary-rgb);
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: poppins;
+    font-weight: 800;
+}
+.container-custom{
+    max-width: 800px !important;
+    background-color:lightgreen;
+}
