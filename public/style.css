@@ -13,7 +13,9 @@ body {
     background: url('bgg.png') no-repeat;
     background-size: cover;
     background-position: center;
+
 }
+
 
 header {
     position: fixed;
