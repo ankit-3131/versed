@@ -34,6 +34,7 @@ passport.use(
 )
 );
 
+
 passport.serializeUser((user, done)=> done(null,user));
 passport.deserializeUser((user, done)=> done(null,user));
 
@@ -59,11 +60,13 @@ app.get('/main-page',(req,res) =>{
 //     res.redirect('/');
 // })
 app.get('/logout', (req, res, next) => {
-    req.logout((err) => {
+    req.session.destroy((err) => {
         if (err) {
             return next(err);
         }
+        else{
         res.redirect('/');
+        }
     });
 });
 
