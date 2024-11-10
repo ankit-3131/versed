@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
-const connectDB = require('./server/config/db')
+const connectDB = require('./server/config/db');
+const methodOverride = require('method-override');
 connectDB();
 
 const session = require('express-session');
@@ -28,9 +29,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({encoded:true}));
 app.use(express.json());
+app.use(methodOverride("_method"));
 
 app.use(express.static('public'));
 app.use(expressLayouts);
+
 
 app.set('layout','./layouts/main'); // layout is here in main.ejs
 app.set('view engine','ejs');

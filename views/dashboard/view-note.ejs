@@ -1,0 +1,78 @@
+<!-- <div class="container mt-5 p-4" style="background-color: #1a3629; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+    <h1 class="text-center" style="color: #a8df65; font-weight: 600;"><%= note.title %></h1>
+    <p class="text-muted text-center" style="color: #9cbf88; font-size: 0.9rem;">Created on: <%= new Date(note.createdAt).toLocaleDateString() %></p>
+  
+    <div class="note-body mt-4" style="color: #d9f7be; line-height: 1.6; padding: 10px; background-color: #3a5c47; border-radius: 5px;">
+      <p><%= note.body %></p>
+    </div>
+  
+    <div class="mt-4 text-center">
+      <a href="/dashboard" class="btn" style="background-color: #4caf50; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-right: 10px;">Back to Dashboard</a>
+      <a href="/dashboard/edit-note/<%= noteID %>" class="btn" style="background-color: #67a678; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin-right: 10px;">Edit Note</a>
+      <form action="/dashboard/delete-note/<%= noteID %>" method="POST" class="d-inline">
+        <button type="submit" class="btn" style="background-color: #a83f3f; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Delete Note</button>
+      </form>
+    </div>
+  </div>
+   -->
+
+
+   <div class="container-fluid container-fluid-custom pb-5 mb-5" style="color: #d9f7be; background-color: #000000; border-radius: 10px; padding: 20px;">
+    <div class="row mb-4">
+      <div class="col">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb" style="background-color: #000000; border-radius: 5px;">
+            <li class="breadcrumb-item"><a href="/dashboard" style="color: #a8df65;">Dashboard</a></li>
+            <li class="breadcrumb-item active" style="color: #d9f7be;"><%= note.title %></li>
+          </ol>
+        </nav>
+        <hr>
+        <div class="col d-flex justify-content-between align-items-center">
+          <h1 class="h3" style="color: #a8df65;">Song Album: "<%= note.album %>"</h1>
+          <button type="button" class="btn" style="background-color: #a83f3f; color: #fff;" data-bs-toggle="modal" id="deleteButton" data-bs-target="#deleteModal">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  
+    <form action="/dashboard/item/<%= noteID %>?_method=PUT" method="POST" class="position-relative">
+      <div class="form-group mb-4 position-absolute" style="left:1px; top:1px; right: 1px;">
+        <input type="text" class="form-control fw-bold fs-4" id="title" name="title" value="<%= note.title %>" placeholder="Title" style="background-color: #00562b; color: #d9f7be; border: none; border-radius: 5px;">
+      </div>
+      <hr>
+      <div class="form-group mb-4">
+        <textarea class="form-control pt-5 fs-4" id="body" name="body" placeholder="Take a note..." rows="12" style="background-color: #d9f7be; color: #000000; border: none; border-radius: 5px;"><%= note.body %></textarea>
+      </div>
+  
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-lg" style="background-color: #4caf50; border: none;">Update</button>
+      </div>
+    </form>
+  </div>
+  
+  <div class="modal fade" tabindex="-1" role="dialog" id="deleteModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: #2e4d38; color: #d9f7be; border-radius: 8px;">
+        <div class="modal-header" style="border-bottom: 1px solid #a8df65;">
+          <h5 class="modal-title" style="color: #a8df65;">You are about to delete a note</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="color: #d9f7be;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>
+            This will delete your note <b class="fw-bold"><%= note.title %></b><br/>
+            Are you sure?
+          </p>
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #a8df65;">
+          <button type="button" class="btn" style="background-color: #67a678; color: #fff; border: none;" data-bs-dismiss="modal">Close</button>
+          <form action="/dashboard/item-delete/<%= noteID %>?_method=DELETE" method="POST" class="position-relative">
+            <button type="submit" class="btn" style="background-color: #a83f3f; color: #fff; border: none;">Delete Note</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

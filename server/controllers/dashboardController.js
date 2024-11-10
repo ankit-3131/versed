@@ -6,6 +6,7 @@ exports.dashboard = async (req, res)=>{
     }
     async function insertDummyData(){
     try{
+      // const result = await Note.deleteMany({ user: "67303af342cec86248155141" }); 
         await Note.insertMany([
             {
                 user:"6728fe279856ffaacb1dcf2f",
@@ -15,8 +16,8 @@ exports.dashboard = async (req, res)=>{
             },
             {
                 user:"67303af342cec86248155141",
-                title: "ANOTHER ACCOUNT",
-                body: "HI THERE THIS NOTE IS ON ANOTHER ACCOUNT",
+                title: "Treat Me Better",
+                body: "I wont lie to you I know hes just not right for you And you can tell me if Im off...",
                 createdAt: new Date(),
             },
         ])
@@ -46,3 +47,38 @@ exports.dashboard = async (req, res)=>{
       console.log("Error", error);
     }
     };
+
+    exports.dashboardViewNote = async(req,res)=>{
+      const note = await Note.findById({ _id: req.params.id }).where({user: req.user.id}).lean();
+
+      if(note){
+        res.render('dashboard/view-note', {
+          noteID: req.params.id,
+          note,
+          layout: '../views/layouts/dashboard'
+        })
+      }
+    }
+    exports.dashboardUpdateNote = async(req,res)=>{
+      try{
+        await Note.findOneAndUpdate(
+          { _id: req.params.id},
+          { title: req.body.title, body: req.body.body }
+        ).where( {user: req.user.id} );
+        res.redirect('/dashboard')
+      } catch(error){
+        console.log(error);
+      }
+    }
+
+    //delete note code
+
+    exports.dashboardDeleteNote = async(req,res)=>{
+      try{
+        await Note.deleteOne({ _id: req.params.id}).where({user: req.user.id});
+        res.redirect('/dashboard');
+      }
+      catch(error){
+        console.log(error);
+      }
+    }
