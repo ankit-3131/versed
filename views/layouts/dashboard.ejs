@@ -12,10 +12,37 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&family=Unbounded:wght@300;700&display=swap" rel="stylesheet">
   <style>
+
     .new-note{
       background-color: lightgreen;
       color: black;
     }
+    .moveRight {
+      position: absolute;
+      animation: moveToRight 2s forwards; /* Duration: 2 seconds, stays at the final position */
+    }
+
+    @keyframes moveToRight {
+      from {
+        left: 0; /* Initial position */
+      }
+      to {
+        left: 10%; /* Final position (moves to the right) */
+      }
+    }
+    #lyrics{
+      display: flex;
+      height: 500px;
+    }
+    .body-truncate {
+      max-height: 60px; /* Adjust based on how much content should fit */
+      overflow: hidden; /* Hides content that exceeds the max-height */
+      text-overflow: ellipsis; /* Adds '...' for overflowed content */
+      display: -webkit-box; /* Enables truncating for multiline text */
+      -webkit-line-clamp: 3; /* Limits to 3 lines (adjust as needed) */
+      -webkit-box-orient: vertical; /* Required for -webkit-line-clamp to work */
+    }
+
   </style>
 </head>
 <body class="home d-flex flex-column h-100">

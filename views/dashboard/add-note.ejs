@@ -1,0 +1,30 @@
+
+  <div class="modal" tabindex="-1" role="dialog" id="addModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="background-color: #2e4d38; color: #d9f7be; border-radius: 8px;">
+        <div class="modal-header" style="border-bottom: 1px solid #a8df65;">
+          <h5 class="modal-title" style="color: #a8df65;"></h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="color: #d9f7be;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <p>
+            This will delete your note <b class="fw-bold"></b><br/>
+            Are you sure?
+          </p> -->
+          <form action="/dashboard/add" method="POST">
+            <input type="text" name="title" placeholder="Song title">
+            <input type="text" name="body" placeholder="Write your song lyrics..">
+          <!--</form>-->
+        </div>
+        <div class="modal-footer" style="border-top: 1px solid #a8df65;">
+          <button type="button" class="btn" style="background-color: #67a678; color: #fff; border: none;" data-bs-dismiss="modal">Close</button>
+          <!-- <form action="/dashboard/item-delete/_method=DELETE" method="POST" class="position-relative"> -->
+            <button type="submit" class="btn" style="background-color: #a83f3f; color: #fff; border: none;">Add this Note</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
