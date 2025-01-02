@@ -9,7 +9,7 @@ connectDB();
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
-
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3000;
@@ -25,9 +25,10 @@ app.use(session(
     })
 );
 
+app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.urlencoded({encoded:true}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(methodOverride("_method"));
 
