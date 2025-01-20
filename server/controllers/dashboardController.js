@@ -148,3 +148,31 @@ exports.dashboard = async (req, res)=>{
         console.log(`error in creating the note`,error);
       }
     }
+
+    exports.searchNote = async (req, res)=>{
+      const locals = {
+        pageTitle: "Dashboard",
+        description: "Dashboard page"
+    }
+    try{
+      const user = req.user;
+      var flag = req.cookies?.flag || 100;
+      var content = req.cookies?.content || "Done!";
+      res.clearCookie('flag');
+      res.clearCookie('content');
+
+      const searchTerm = req.query.searchTerm || "";
+      const notes = await Note.find({$or : [{title: new RegExp (searchTerm, "i")}, {body: new RegExp (searchTerm, "i")}], user: req.user.id})
+      console.log(notes)
+      res.render('dashboard/index', {
+        user,
+        locals,
+        notes,
+        flag,
+        content,
+        layout: "../views/layouts/dashboard",
+      });
+    }catch(error){
+      console.log(`error in searching the note`,error);
+    }
+    }

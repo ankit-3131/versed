@@ -4,7 +4,7 @@
         Versed.
       </a>
   
-      <form style="width: 40%; border-radius: 25px;" action="" class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" role="search" method="POST" action="/dashboard/search">
+      <form id="search-form" action="/dashboard/search" method="get" style="width: 40%; border-radius: 25px;" class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" role="search">
         <input style="border-radius: 25px;" id="search-bar" placeholder="Search your lyrics.." type="search" name="searchTerm" class="form-control border-primary" >
       </form>
 
@@ -15,6 +15,7 @@
     </header>
   </div>
   <script>
+    const searchForm = document.getElementById('search-form');
     const searchBar = document.getElementById('search-bar');
     const placeholders = [
         "Search songs...",
@@ -30,4 +31,13 @@
         searchBar.placeholder = placeholders[index];
         index = (index + 1) % placeholders.length;
     }, 1200); 
+
+
+    searchBar.addEventListener('keydown', (event) => {
+    if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+        console.log('Enter pressed');
+        event.preventDefault();
+        searchForm.submit();
+    }
+});
   </script>

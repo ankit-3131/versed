@@ -13,6 +13,8 @@ router.get('/dashboard/add',isLoggedIn, (req,res)=>{
     res.render('dashboard/add-note', {layout: "../views/layouts/dashboard"});
 });
 
+router.get('/dashboard/search', isLoggedIn, dashboardController.searchNote);
+
 router.post('/dashboard/add',isLoggedIn, dashboardController.dashboardAddNote);
 router.put('/dashboard/item/:id',isLoggedIn, dashboardController.dashboardUpdateNote);
 router.delete('/dashboard/item-delete/:id',isLoggedIn, dashboardController.dashboardDeleteNote);
