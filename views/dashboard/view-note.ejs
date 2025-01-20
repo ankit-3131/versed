@@ -1,4 +1,4 @@
-   <div class="container-fluid container-fluid-custom pb-5 mb-5" style="color: #d9f7be; background-color: #000000; border-radius: 10px; padding: 20px;">
+   <div class="container-fluid container-fluid-custom pb-5 mb-5" style="opacity: 80%; color: #d9f7be; background-color: #000000; border-radius: 10px; padding: 20px;">
     <div class="row mb-4">
       <div class="col">
         <nav aria-label="breadcrumb">
@@ -19,11 +19,14 @@
   
     <form action="/dashboard/item/<%= noteID %>?_method=PUT" method="POST" class="position-relative">
       <div class="form-group mb-4 position-absolute" style="left:1px; top:1px; right: 1px;">
-        <input type="text" class="form-control fw-bold fs-4" id="title" name="title" value="<%= note.title %>" placeholder="Title" style="background-color: #00562b; color: #d9f7be; border: none; border-radius: 5px;">
+        <input type="text" class="form-control fw-bold fs-4" id="title" name="title" value="<%= note.title %>" placeholder="Title" style="background-color: #08a861; color: #dee2e6; border: none; border-radius: 5px;border-bottom: black 8px solid;">
       </div>
       <hr>
       <div class="form-group mb-4">
-        <textarea class="form-control pt-5 fs-4" id="body" name="body" placeholder="Take a note..." rows="12" style="background-color: #d9f7be; color: #000000; border: none; border-radius: 5px;"><%= note.body %></textarea>
+        <textarea class="form-control pt-5 fs-4" id="body" name="body" placeholder="Take a note..." rows="12" style="background-color: #08a861;
+        color: #000000;
+        border: 2.3px black solid;
+        border-radius: 30px;"><%= note.body %></textarea>
       </div>
   
       <div class="form-group">
