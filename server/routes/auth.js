@@ -48,11 +48,6 @@ async function(accessToken, refreshToken, profile, done) {
 router.get('/auth/google', passport.authenticate('google', {scope: ["profile","email"]}));
 
 router.get("/auth/google/callback", passport.authenticate('google',{failureRedirect: '/login-failure'}), (req,res) => {
-      sendEmail(
-    `${email} ,ank008801@gmail.com`,
-    "Versed",
-    "Registered Successfully!"
-  );
     res.redirect("/dashboard");
 });
 
