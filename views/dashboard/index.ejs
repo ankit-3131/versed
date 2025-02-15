@@ -17,7 +17,7 @@
         <div class="my-green-card col-sm-3 card border-success m-2 mb-4 " style="max-width: 18rem; min-height: 210px; max-height: 240px;">
             <a href="/dashboard/item/<%= notes[i]._id %>" class="card-body text-decoration-none">
             <div style="color: black; font-weight: 500;" class="card-header"><%= notes[i].album %></div>
-            <div class="card-body text-success">
+            <div style=" background-size: cover;" class="card-body text-success">
               <h5 class="card-title"><%= notes[i].title %></h5>
               <p class="card-text body-truncate"><%= notes[i].body %></p>
             </a>
@@ -62,7 +62,8 @@
             This will delete your note <b class="fw-bold"></b><br/>
             Are you sure?
           </p> -->
-          <form action="/dashboard/add" method="POST">
+          <form action="/dashboard/add" method="POST" enctype="multipart/form-data">
+            <input type="file" name="coverImage">
             <input type="text" name="title" placeholder="Song title">
             <input id = "lyrics" type="text" name="body" placeholder="Write your song lyrics..">
         </div>

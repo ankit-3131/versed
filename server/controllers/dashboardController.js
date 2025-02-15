@@ -127,11 +127,12 @@ exports.dashboard = async (req, res)=>{
         const title = req.body.title;
         const body = req.body.body;
         const userNow = req.user;
-
+        console.log(req.file)
         const addedNote = Note.create({
           title: title,
           body: body,
           user: userNow,
+          coverImage: req.file.filename,
         })
         const locals = {
           pageTitle: "Add Note",
@@ -162,7 +163,7 @@ exports.dashboard = async (req, res)=>{
       res.clearCookie('content');
 
       const searchTerm = req.query.searchTerm || "";
-      const notes = await Note.find({$or : [{title: new RegExp (searchTerm, "i")}, {body: new RegExp (searchTerm, "i")}], user: req.user.id})
+      const notes = await Note.find({$or : [{title: new RegExp (searchTerm, "i")}, {body: new RegExp (searchTerm, "i")}]})
       console.log(notes)
       res.render('dashboard/index', {
         user,
@@ -175,4 +176,4 @@ exports.dashboard = async (req, res)=>{
     }catch(error){
       console.log(`error in searching the note`,error);
     }
-    }
+  }

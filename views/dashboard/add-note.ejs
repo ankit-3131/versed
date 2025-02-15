@@ -1,5 +1,6 @@
+<!-- this is not connected it is shifted as a model in the main dashboard index ejs file  -->
 
-  <div class="modal" tabindex="-1" role="dialog" id="addModal">
+<div class="modal" tabindex="-1" role="dialog" id="addModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content" style="background-color: #2e4d38; color: #d9f7be; border-radius: 8px;">
         <div class="modal-header" style="border-bottom: 1px solid #a8df65;">
@@ -9,12 +10,9 @@
           </button>
         </div>
         <div class="modal-body">
-          <!-- <p>
-            This will delete your note <b class="fw-bold"></b><br/>
-            Are you sure?
-          </p> -->
+         
           <form action="/dashboard/add" method="POST">
-            <input type="text" name="title" placeholder="Song title">
+            <input type="text" name="title" placeholder="Song title here">
             <input type="text" name="body" placeholder="Write your song lyrics..">
           <!--</form>-->
         </div>

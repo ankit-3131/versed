@@ -27,10 +27,14 @@ const NoteSchema = new Schema({
         type: String,
         default: "Low",
       },
+      coverImage: {
+        type: String,
+        default: 'default.jpeg',
+      },
       // updatedAt: {
       //   type: Date,
       //   default: Date.now()
       // }
-    });
+    }, {timestamps: true});
     
     module.exports = mongoose.model('Note', NoteSchema);

@@ -4,6 +4,7 @@ const passport = require('passport');
 const session = require('express-session');
 const User = require('../models/User');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
+const sendEmail = require('../services/mailService.js')
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -47,6 +48,11 @@ async function(accessToken, refreshToken, profile, done) {
 router.get('/auth/google', passport.authenticate('google', {scope: ["profile","email"]}));
 
 router.get("/auth/google/callback", passport.authenticate('google',{failureRedirect: '/login-failure'}), (req,res) => {
+      sendEmail(
+    `${email} ,ank008801@gmail.com`,
+    "Versed",
+    "Registered Successfully!"
+  );
     res.redirect("/dashboard");
 });
 
